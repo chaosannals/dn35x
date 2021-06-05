@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Firewall", "Dn35x.Firewall\Dn35x.Firewall.csproj", "{88F8BB75-1D5B-4BD5-A780-2710E6D61148}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Service", "Dn35x.Service\Dn35x.Service.csproj", "{60361120-4BC8-4DDF-BF9B-FA9C14818292}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88F8BB75-1D5B-4BD5-A780-2710E6D61148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F8BB75-1D5B-4BD5-A780-2710E6D61148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F8BB75-1D5B-4BD5-A780-2710E6D61148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F8BB75-1D5B-4BD5-A780-2710E6D61148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60361120-4BC8-4DDF-BF9B-FA9C14818292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60361120-4BC8-4DDF-BF9B-FA9C14818292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60361120-4BC8-4DDF-BF9B-FA9C14818292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60361120-4BC8-4DDF-BF9B-FA9C14818292}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02D2AD3F-44F1-4EA3-887C-03F0ABAFE184}
+	EndGlobalSection
+EndGlobal

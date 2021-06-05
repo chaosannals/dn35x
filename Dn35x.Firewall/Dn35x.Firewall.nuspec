@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>ChaosAnnals</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/chaosannals/dn35x</projectUrl>
+    <description>Yet a .Net Framework 3.5 Firewall library.</description>
+    <releaseNotes>Good luck.</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>.Net Framework 3.5 Fileware</tags>
+    <dependencies>
+      <group targetFramework="net35">
+      </group>
+    </dependencies>
+  </metadata>
+</package>
