@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Logging", "Dn35x.Logg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Crypting", "Dn35x.Crypting\Dn35x.Crypting.csproj", "{DF3157AC-1F67-4317-BE44-4F1F5A71D9AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Demo.Basic", "Dn35x.Demo.Basic\Dn35x.Demo.Basic.csproj", "{B028776F-5389-4DB1-B5A5-4C391419494A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Demo.Service", "Dn35x.Demo.Service\Dn35x.Demo.Service.csproj", "{609FEA44-239C-4A40-8A3D-F5A508A93724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{DF3157AC-1F67-4317-BE44-4F1F5A71D9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF3157AC-1F67-4317-BE44-4F1F5A71D9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF3157AC-1F67-4317-BE44-4F1F5A71D9AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B028776F-5389-4DB1-B5A5-4C391419494A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B028776F-5389-4DB1-B5A5-4C391419494A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B028776F-5389-4DB1-B5A5-4C391419494A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B028776F-5389-4DB1-B5A5-4C391419494A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{609FEA44-239C-4A40-8A3D-F5A508A93724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{609FEA44-239C-4A40-8A3D-F5A508A93724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{609FEA44-239C-4A40-8A3D-F5A508A93724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{609FEA44-239C-4A40-8A3D-F5A508A93724}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

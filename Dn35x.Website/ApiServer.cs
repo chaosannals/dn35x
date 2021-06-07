@@ -8,7 +8,7 @@ using WebSocketSharp.Server;
 
 namespace Dn35x.Website
 {
-    public class WebServer<T> where T: WebDispatcher, new()
+    public class ApiServer<T> where T: ApiDispatcher, new()
     {
         private static Dictionary<string, string> MIME = new Dictionary<string, string>() {
             { ".html", "text/html" },
@@ -26,7 +26,7 @@ namespace Dn35x.Website
         public HttpServer Server { get; private set; }
         public string Folder { get; private set; }
 
-        public WebServer(int port=80, string certification=null, string password=null)
+        public ApiServer(int port=80, string certification=null, string password=null)
         {
             bool secure = certification != null;
             Server = new HttpServer(IPAddress.Any, port, secure);

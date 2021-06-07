@@ -7,12 +7,12 @@ using Dn35x.Website.Exceptions;
 
 namespace Dn35x.Website
 {
-    public abstract class WebDispatcher : WebSocketBehavior
+    public abstract class ApiDispatcher : WebSocketBehavior
     {
         public Assembly Space { get; private set; }
         public string Prefix { get; private set; }
 
-        public WebDispatcher(Assembly space, string prefix="")
+        public ApiDispatcher(Assembly space, string prefix="")
         {
             Space = space;
             Prefix = prefix;
@@ -20,16 +20,14 @@ namespace Dn35x.Website
 
         protected override void OnMessage(MessageEventArgs args)
         {
-            JObject request = JObject.Parse(args.Data);
-            string controller = request["controller"].ToString();
-            string action = request["action"].ToString();
-            string type = string.Format("{0}.{1}", Prefix, controller);
+            ApiRequest request = new ApiRequest(args.Data);
+            string type = string.Format("{0}.{1}", Prefix, request.Controller);
             object instance = Space.CreateInstance(type);
             if (instance == null)
             {
                 throw new WebQueryException();
             }
-            MethodInfo method = instance.GetType().GetMethod(action);
+            MethodInfo method = instance.GetType().GetMethod(request.Action);
             if (method == null)
             {
                 throw new WebQueryException();

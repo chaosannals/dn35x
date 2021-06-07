@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3A05CA4F-FC47-48BE-A990-7D6C973424C5}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dn35x.Website</RootNamespace>
-    <AssemblyName>Dn35x.Website</AssemblyName>
+    <ProjectGuid>{609FEA44-239C-4A40-8A3D-F5A508A93724}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Dn35x.Demo.Service</RootNamespace>
+    <AssemblyName>Dn35x.Demo.Service</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,30 +32,48 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
-    <Reference Include="websocket-sharp, Version=1.0.2.59611, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebSocketSharp.1.0.3-rc11\lib\websocket-sharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiRequest.cs" />
-    <Compile Include="ApiResponse.cs" />
-    <Compile Include="Exceptions\WebQueryException.cs" />
-    <Compile Include="ApiServer.cs" />
+    <Compile Include="DemoMasterService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DemoMasterService.Designer.cs">
+      <DependentUpon>DemoMasterService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemoSlaveService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DemoSlaveService.Designer.cs">
+      <DependentUpon>DemoSlaveService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="DemoProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DemoProjectInstaller.Designer.cs">
+      <DependentUpon>DemoProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ApiDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="DemoMasterService.resx">
+      <DependentUpon>DemoMasterService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoProjectInstaller.resx">
+      <DependentUpon>DemoProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoSlaveService.resx">
+      <DependentUpon>DemoSlaveService.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
