@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using Newtonsoft.Json.Linq;
@@ -18,6 +20,10 @@ namespace Dn35x.Website
             Prefix = prefix;
         }
 
+        /// <summary>
+        /// 消息接收。
+        /// </summary>
+        /// <param name="args"></param>
         protected override void OnMessage(MessageEventArgs args)
         {
             ApiRequest request = new ApiRequest(args.Data);
@@ -32,7 +38,37 @@ namespace Dn35x.Website
             {
                 throw new WebQueryException();
             }
-            object result = method.Invoke(instance, new object[] { request });
+
+            ThreadPool.QueueUserWorkItem((state) => {
+                object result = method.Invoke(instance, new object[] { request });
+                if (result is IEnumerable<ApiResponse>)
+                {
+                    foreach (ApiResponse response in result as IEnumerable<ApiResponse>)
+                    {
+                        Respond(response.ToString());
+                    }
+                }
+                else
+                {
+                    ApiResponse response = result as ApiResponse;
+
+                }
+            }, this);
+        }
+
+        protected override void OnClose(CloseEventArgs args)
+        {
+            base.OnClose(args);
+        }
+
+        public void Respond(byte[] data)
+        {
+            Send(data);
+        }
+
+        public void Respond(string text)
+        {
+            Send(text);
         }
     }
 }
