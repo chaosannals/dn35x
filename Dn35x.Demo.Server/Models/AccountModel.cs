@@ -8,7 +8,7 @@ namespace Dn35x.Demo.Server.Models
 {
     public class AccountModel
     {
-        public Definition<int?> Id { get; set; }
+        public Definition<long> Id { get; set; }
         public Definition<string> Account { get; set; }
         public Definition<string> Password { get; set; }
         public Definition<DateTime> CreatedAt { get; set; }

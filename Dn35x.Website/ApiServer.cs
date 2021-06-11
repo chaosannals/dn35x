@@ -8,7 +8,7 @@ using WebSocketSharp.Server;
 
 namespace Dn35x.Website
 {
-    public class ApiServer<T> where T: ApiDispatcher, new()
+    public class ApiServer
     {
         private static Dictionary<string, string> MIME = new Dictionary<string, string>() {
             { ".html", "text/html" },
@@ -44,19 +44,51 @@ namespace Dn35x.Website
                 // 使用强制转换 新版本 TLS 1.2 的枚举值。
                 Server.SslConfiguration.EnabledSslProtocols = SslProtocols.Tls | (SslProtocols)0xC00;
             }
-            Server.AddWebSocketService<T>("/api");
-            Server.OnGet += new EventHandler<HttpRequestEventArgs>(ServeStatic);
         }
 
-        public void UseStaticServer(string folder)
+        public ApiServer UseDispatcher<T>(string path) where T : WebSocketBehavior, new()
+        {
+            Server.AddWebSocketService<T>(path);
+            return this;
+        }
+
+        public ApiServer UseDispatcher<T>(string path, Func<T> initializer) where T: WebSocketBehavior, new()
+        {
+            Server.AddWebSocketService<T>(path, initializer);
+            return this;
+        }
+
+
+        /// <summary>
+        /// 使用静态目录
+        /// </summary>
+        /// <param name="folder"></param>
+        /// <returns></returns>
+        public ApiServer UseStaticServer(string folder)
         {
             if (Folder == null)
             {
                 Server.OnGet += new EventHandler<HttpRequestEventArgs>(ServeStatic);
             }
             Folder = Path.GetFileName(folder);
+            return this;
         }
 
+        public void Start()
+        {
+            Server.Start();
+        }
+
+        public void Stop()
+        {
+            Server.Stop();
+        }
+
+        /// <summary>
+        /// 静态页面。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ServeStatic(object sender, HttpRequestEventArgs e)
         {
             string location = e.Request.Url.AbsolutePath.Trim('/').Replace('/', '\\');

@@ -56,7 +56,7 @@ namespace Dn35x.Database
                 T one = (T)type.Assembly.CreateInstance(type.FullName);
                 foreach (PropertyInfo p in properties)
                 {
-                    var v = reader[p.Name];
+                    object v = Definition.Cast(reader[p.Name], p.PropertyType);
                     p.SetValue(one, v is DBNull ? null : v, null);
                 }
                 result.Add(one);
@@ -74,7 +74,6 @@ namespace Dn35x.Database
                 return null;
             }
             Type type = typeof(T);
-            Type dtype = typeof(Definition<>);
             T result = type.Assembly.CreateInstance(type.FullName) as T;
             for (int i = 0; i < reader.FieldCount; ++i)
             {
@@ -82,24 +81,8 @@ namespace Dn35x.Database
                 PropertyInfo p = type.GetProperty(pn.ToPascal());
                 if (p != null)
                 {
-                    object v = reader[pn];
-                    Type vtype = p.PropertyType.GetGenericArguments()[0];
-                    Type vdtype = dtype.MakeGenericType(vtype);
-                    object vv = v is DBNull ? null : v;
-                    if (vv != null && typeof(long).IsInstanceOfType(v))
-                    {
-                        if (vtype == typeof(int) || vtype == typeof(int?))
-                        {
-                            vv = Convert.ToInt32(vv);
-                        }
-                        else if (vtype == typeof(short) || vtype == typeof(short?))
-                        {
-                            vv = Convert.ToInt16(vv);
-                        }
-                    }
-                    ConstructorInfo ci = vdtype.GetConstructor(new Type[] { vtype });
-                    object vd = ci.Invoke(new object[] { vv });
-                    p.SetValue(result, vd, null);
+                    object v = Definition.Cast(reader[pn], p.PropertyType);
+                    p.SetValue(result, v, null);
                 }
             }
             reader.Close();
@@ -121,6 +104,13 @@ namespace Dn35x.Database
             return long.Parse(command.ExecuteScalar().ToString());
         }
 
+        /// <summary>
+        /// 添加一条记录。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="one"></param>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public int Add<T>(T one, string table = null)
         {
             Type type = typeof(T);
@@ -197,6 +187,12 @@ namespace Dn35x.Database
             return command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// 生成一个新命令。
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public SQLiteCommand NewCommand(string sql, params SQLiteParameter[] args)
         {
             EnsureConnection();

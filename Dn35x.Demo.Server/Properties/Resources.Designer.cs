@@ -63,6 +63,16 @@ namespace Dn35x.Demo.Server.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
+        internal static byte[] dn35x {
+            get {
+                object obj = ResourceManager.GetObject("dn35x", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
         internal static byte[] Dn35x_Demo_Server {
             get {
                 object obj = ResourceManager.GetObject("Dn35x_Demo_Server", resourceCulture);

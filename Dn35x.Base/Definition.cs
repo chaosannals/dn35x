@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Dn35x.Base
@@ -34,6 +34,17 @@ namespace Dn35x.Base
         public static implicit operator T(Definition<T> one)
         {
             return one.data;
+        }
+    }
+
+    public static class Definition
+    {
+        public static object Cast(object v, Type rtype)
+        {
+            Type vtype = rtype.GetGenericArguments()[0];
+            ConstructorInfo ci = rtype.GetConstructor(new Type[] { vtype });
+            object r = v is DBNull ? null : v;
+            return ci.Invoke(new object[] { r });
         }
     }
 }

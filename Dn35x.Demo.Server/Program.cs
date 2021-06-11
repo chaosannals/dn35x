@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Resources;
+using System.Threading;
 using System.Data.SQLite;
 using Dn35x.Base;
 using Dn35x.Database;
@@ -10,6 +11,12 @@ using Dn35x.Demo.Server.Models;
 
 namespace Dn35x.Demo.Server
 {
+    class TestA
+    {
+        public string @operator { get; set; }
+        public string @class { get; set; }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -34,8 +41,39 @@ namespace Dn35x.Demo.Server
                     Value = "admin",
                 });
                 Console.WriteLine(am.Password.Value);
-                Console.ReadLine();
             }
+
+            foreach(var p in typeof(TestA).GetProperties())
+            {
+                Console.WriteLine(p.Name);
+            }
+            Console.ReadLine();
+
+            /*
+            // 创建客户端
+            for (int i = 0; i < 5; ++i)
+            {
+                Visiter.Luanch(i);
+            }
+
+            // 复制密钥
+            string pfxpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dn35x.pfx");
+            if (!File.Exists(pfxpath))
+            {
+                File.WriteAllBytes(pfxpath, Properties.Resources.dn35x);
+            }
+
+            // 创建服务端
+            
+            ApiServer server = new ApiServer(12345, pfxpath);
+            server.UseDispatcher<Dispatcher>("/api")
+                .UseStaticServer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "www"))
+                .Start();
+            while(true)
+            {
+                Thread.Sleep(1000);
+            }
+            */
         }
     }
 }
