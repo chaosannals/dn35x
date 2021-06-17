@@ -8,6 +8,8 @@ using Dn35x.Base;
 using Dn35x.Database;
 using Dn35x.Website;
 using Dn35x.Demo.Server.Models;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Dn35x.Demo.Server
 {
@@ -21,6 +23,12 @@ namespace Dn35x.Demo.Server
     {
         static void Main(string[] args)
         {
+            foreach(var r in Assembly.GetAssembly(typeof(Program)).GetManifestResourceNames())
+            {
+                Console.WriteLine(r);
+            }
+            Console.ReadKey();
+            /*
             string dbpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dn35x.Demo.Server.db");
             if (!File.Exists(dbpath))
             {
@@ -48,6 +56,7 @@ namespace Dn35x.Demo.Server
                 Console.WriteLine(p.Name);
             }
             Console.ReadLine();
+            */
 
             /*
             // 创建客户端
