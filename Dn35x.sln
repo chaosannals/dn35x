@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Demo.Server", "Dn35x.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Base", "Dn35x.Base\Dn35x.Base.csproj", "{EA99D4FA-B833-4374-BC93-F03F48EFD755}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dn35x.Demo.Console", "Dn35x.Demo.Console\Dn35x.Demo.Console.csproj", "{57486F18-3E37-4A4B-B400-8BB4BB818FD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{EA99D4FA-B833-4374-BC93-F03F48EFD755}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA99D4FA-B833-4374-BC93-F03F48EFD755}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA99D4FA-B833-4374-BC93-F03F48EFD755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57486F18-3E37-4A4B-B400-8BB4BB818FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57486F18-3E37-4A4B-B400-8BB4BB818FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57486F18-3E37-4A4B-B400-8BB4BB818FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57486F18-3E37-4A4B-B400-8BB4BB818FD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
