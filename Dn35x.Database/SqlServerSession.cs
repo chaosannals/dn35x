@@ -62,6 +62,18 @@ namespace Dn35x.Database
             }
         }
 
+        public bool ExistsTable(string name)
+        {
+            string sql = string.Format("SELECT OBJECT_ID(N'dbo.[{0}]')", name);
+            using (SqlCommand command = NewCommand(sql))
+            {
+                SqlDataReader reader = command.ExecuteReader();
+                bool result = reader.Read() ? !(reader[0] is DBNull) : false;
+                reader.Close();
+                return result;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
